@@ -22,7 +22,8 @@ class DataParser:
         return self.key > other.key
 
     def __repr__(self):
-        return 'None' if self.json_props == None else str(self.json_props['score']) + ' ' + str(self.json_props['sequence_order'])
+        if self.json_props == None: return 'Invalid json string'
+        return json.dumps(self.key)
 
     def get(self, queries):
         ret = {query: self.json_props[query] for query in queries}
