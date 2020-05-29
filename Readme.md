@@ -3,8 +3,7 @@
 ## Usage
 
 1. Change directory to this folder
-2. py main.py --path=./input.txt --count=3
-
+2. py main.py --path=./TestCase/input.data --count=3
 
 ### Problem Text:
 ​

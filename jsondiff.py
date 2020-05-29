@@ -10,12 +10,8 @@ import json
 # Good answers will have good interface. This includes program descriptions and
 # usage of a nice argument parser like argparse.
 #
-DESCR = '''
-Given two JSON formated files, attempts to output where they are different, if at all.
+DESCR = ''' Given two JSON formated files, attempts to output where they are different, if at all.'''
 
-
-
-'''
 def arg_parser():
     parser = argparse.ArgumentParser(description=DESCR)
     parser.add_argument(

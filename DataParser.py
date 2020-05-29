@@ -1,32 +1,25 @@
 import json
-
-
 class DataParser:
     def __init__(self, line, sequence_order):
         score, values = line.split(':', 1)
+        self.score = score
+        self.json_str = values
         self.key = (int(score), sequence_order)
-        try:
-            self.json_props = json.loads(values)
-        except:
-            self.json_props = None
-        if self.json_props != None:
-            self.json_props["score"] = int(score)
-            self.json_props["sequence_order"] = sequence_order
-
-    # If the parsed data is not a json string or id is not presence in the json string, the data is not valid
-    @property
-    def is_valid(self):
-        return self.json_props != None and "id" in self.json_props
 
     # Sorting. Highest score first. If same score then most recently first
     def __lt__(self, other):
-        return self.key > other.key
-
-    def __repr__(self):
-        if self.json_props == None:
-            return "Invalid json string"
-        return json.dumps(self.key)
+        return self.key < other.key
 
     def get(self, queries):
-        ret = {query: self.json_props[query] for query in queries}
+        try:
+            json_props = json.loads(self.json_str)
+        except:
+            json_props = None
+        if json_props == None: 
+            raise Exception('invalid json format No JSON object could be decoded THIS IS NOT JSON')
+        ret = {}
+        for query in queries:
+            if query == 'score':
+                ret[query] = self.score
+            else: ret[query] = json_props[query]
         return ret

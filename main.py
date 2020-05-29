@@ -7,7 +7,7 @@ import json
 
 def print_intruction():
     print('Valid argument are --path=str(X) and --count=int(Y) or ')
-    print('Example: py main.py --path=./input.txt --count=3')
+    print('Example: py main.py --path=./TestCase/input.txt --count=3')
 
 def main(args):
     try:
@@ -21,6 +21,7 @@ def main(args):
         sys.exit(2)
     json_content = parse_JSON_from_path(info['--path'], int(info['--count']))
     print(json.dumps(json_content))
+    return json_content
 
 
 if __name__ == "__main__":

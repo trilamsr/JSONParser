@@ -1,37 +1,26 @@
-from pprint import pprint
 from DataParser import DataParser
-import sys
+import heapq
+import json
 
 def parse_all_lines(all_lines):
-    separate_lines = all_lines.split('\n')
-    for i, line in enumerate(separate_lines):
+    for i, line in enumerate(all_lines):
         if line == '': continue
         line_instance = DataParser(line, i)
         yield line_instance
 
-def failed_validation(target_arr):
-    requirement = lambda element: element.is_valid
-    return not all(requirement(element) for element in target_arr)
-
-def get_k_element(arr, k):
-    ret = []
-    for ele in arr:
-        if k > 0:
-            ret.append(ele)
-            k-= 1
-        if k <= 0: break
-    return ret
+def get_highest_n_element(all_lines, count):
+    heap = []
+    for line_instance in parse_all_lines(all_lines):
+        heapq.heappush(heap, line_instance)
+        if len(heap) > count:
+            heapq.heappop(heap)
+    heap.sort(reverse=True)
+    return heap
 
 def parse_JSON_from_path(file_path, count):
-    file = open(file_path, 'r')
-    all_lines = file.read()
-    parsed_information = list(parse_all_lines(all_lines))
-    file.close()
-    parsed_information.sort()
-    k_element = get_k_element(parsed_information, count)
-    if failed_validation(k_element):
-        raise Exception('invalid json format No JSON object could be decoded THIS IS NOT JSON')
+    all_lines_file = open(file_path, 'r')
+    top_n_element = get_highest_n_element(all_lines_file, count)
+    all_lines_file.close()
     queries = ["score", "id"]
-    output = [data.get(queries) for data in k_element]
-
+    output = [data.get(queries) for data in top_n_element]
     return output
