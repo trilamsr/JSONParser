@@ -5,6 +5,7 @@ import sys
 def parse_all_lines(all_lines):
     separate_lines = all_lines.split('\n')
     for i, line in enumerate(separate_lines):
+        if line == '': continue
         line_instance = DataParser(line, i)
         yield line_instance
 
@@ -32,5 +33,4 @@ def parse_JSON_from_path(file_path, count):
         raise Exception('invalid json format No JSON object could be decoded THIS IS NOT JSON')
     queries = ['score', 'id']
     output = [data.get(queries) for data in k_element]
-    print(output)
     return output

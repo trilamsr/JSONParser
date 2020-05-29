@@ -18,7 +18,11 @@ def main(args):
     if '--path' not in info or '--count' not in info:
         print_intruction()
         sys.exit(2)
-    parse_JSON_from_path(info['--path'], int(info['--count']))
+    json_content = parse_JSON_from_path(info['--path'], int(info['--count']))
+    # f = open('result.json', 'w')
+    # f.write(json_content)
+    # f.close()
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
