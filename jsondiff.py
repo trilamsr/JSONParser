@@ -30,11 +30,11 @@ def main(args):
     lhs = json.load(file(args.file_lhs))
     rhs = json.load(file(args.file_rhs))
     if len(lhs) != len(rhs):
-        print 'length mismatch. LHS: %d RHS: %d' % (len(lhs), len(rhs))
+        print ('length mismatch. LHS: %d RHS: %d' % (len(lhs), len(rhs)))
     for idx, (lhs_row, rhs_row) in enumerate(zip(lhs, rhs)):
         # print lhs_row['id'], lhs_row['id']
         if lhs_row['id'] != rhs_row['id']:
-            print "Row mismatch. IDX: %d LHS: %s RHS: %s" % (idx, lhs_row, rhs_row)
+            print ("Row mismatch. IDX: %d LHS: %s RHS: %s" % (idx, lhs_row, rhs_row))
     return 0
 
 

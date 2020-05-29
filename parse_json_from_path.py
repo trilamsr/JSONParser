@@ -31,6 +31,7 @@ def parse_JSON_from_path(file_path, count):
     k_element = get_k_element(parsed_information, count)
     if failed_validation(k_element):
         raise Exception('invalid json format No JSON object could be decoded THIS IS NOT JSON')
-    queries = ['score', 'id']
+    queries = ["score", "id"]
     output = [data.get(queries) for data in k_element]
+
     return output

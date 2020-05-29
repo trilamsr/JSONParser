@@ -1,5 +1,6 @@
 import sys, getopt
 from parse_json_from_path import parse_JSON_from_path
+import json
 
 # parse_JSON_from_path('./input.txt', 3)
 
@@ -19,10 +20,7 @@ def main(args):
         print_intruction()
         sys.exit(2)
     json_content = parse_JSON_from_path(info['--path'], int(info['--count']))
-    print(json_content)
-    # f = open('result.json', 'w')
-    # f.write(json_content)
-    # f.close()
+    print(json.dumps(json_content))
 
 
 if __name__ == "__main__":
