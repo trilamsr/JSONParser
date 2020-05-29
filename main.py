@@ -19,6 +19,7 @@ def main(args):
         print_intruction()
         sys.exit(2)
     json_content = parse_JSON_from_path(info['--path'], int(info['--count']))
+    print(json_content)
     # f = open('result.json', 'w')
     # f.write(json_content)
     # f.close()
